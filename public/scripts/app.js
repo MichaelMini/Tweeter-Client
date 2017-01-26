@@ -16,23 +16,36 @@
  // $('#tweets-container').append($tweet); // to add it to the page so we can make sure it's got all the right elements, classes, etc.
 
 $(function () {
-// console.log($('[action="/tweets"]')[0]);
-  $('[action="/tweets"]').on('click', function (sendTw) {
+  $('[action="/tweets"]').on('submit', function (sendTw) {
     sendTw.preventDefault();
-    var test = $('[action="/tweets"]').serialize();
-    console.log(test);
-  });
-
-  $.ajax({
-    url: '/tweets',
-    method: 'GET'
-  }).then(function(tweets) {
-    tweets.forEach(function(eachTweet){
-      createTweetElement(eachTweet);
+    var $inputLength = $(this).find('textarea').val().length
+    var text = $('[action="/tweets"]').serialize();
+    if ($inputLength === 0) {
+      alert('Please type in the box below the "Compose Tweet"');
+      return
+    }
+    if ($inputLength > 140) {
+      alert('You have typed over the 140 text limit.');
+      return
+    }
+    $.ajax({
+      url: '/tweets',
+      method: 'POST',
+      data: $(this).serialize()
+    }).then(function () {
+      printAllTw();
     });
   });
-
-  // var renderTweets = ;
+  var printAllTw = function () {
+    $.ajax({
+      url: '/tweets',
+      method: 'GET'
+    }).then(function(tweets) {
+      tweets.forEach(function(eachTweet){
+        createTweetElement(eachTweet);
+      });
+    });
+  }
 
   var createTweetElement = function(data) {
     var avatarSmall = data.user.avatars.small;
@@ -46,7 +59,7 @@ $(function () {
       .append($(`<header>`).addClass(`tw-header`))
       .append($(`<section>`).addClass(`tw-sec`))
       .append($(`<footer>`).addClass(`tw-footer`))
-      .appendTo('#tweets');
+      .prependTo('#tweets');
 
     $tweet.find('header')
       .append($(`<img>`).addClass(`user-tb`))
@@ -67,8 +80,14 @@ $(function () {
   }
   // $('#tweets').append($el);
   // renderTweets(tweetdata);
+  printAllTw();
+
+  var $newTweet = $('.new-tweet');
+  $('#compose').on('click', function toggleNewTweet() {
+    $newTweet.slideToggle('slow').find('textarea').focus();
+  });
 });
-// console.log($tweet);
+
 
 
 // $('#tweets').find('article').clone().appendTo('section#tweets');
