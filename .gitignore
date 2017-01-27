@@ -1,3 +1,10 @@
 node_modules/
 .env
 .DS_Store
+public/styles/nav.css.map
+public/styles/new-tweet.css.map
+public/styles/style.css.map
+public/styles/layout.css
+public/styles/nav.css
+public/styles/new-tweet.css
+.sass-cache/
