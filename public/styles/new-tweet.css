@@ -83,12 +83,12 @@ article {
   justify-content: space-between;
 }
 
-#tweets .icons {
+.tweet .icons {
   align-self: center;
   display: none;
 }
 
-#tweets:hover .icons {
+.tweet.hover .icons {
   display: initial;
 }
 

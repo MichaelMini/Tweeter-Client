@@ -39,13 +39,18 @@ $(function () {
     $textarea.val('');
   });
   var printAllTw = function () {
+    console.log("alpha:");
     $.ajax({
       url: '/tweets',
       method: 'GET'
     }).then(function(tweets) {
+      console.log("beta");
+
       tweets.forEach(function(eachTweet){
         createTweetElement(eachTweet);
       });
+
+      toggleHover();
     });
   }
 
@@ -86,5 +91,11 @@ $(function () {
   $('#compose').on('click', function toggleNewTweet() {
     $newTweet.slideToggle('slow').find('textarea').focus();
   });
+
+  var toggleHover = function() {
+    $('#tweets .tweet').hover(
+           function(){ $(this).toggleClass('hover') }
+    )
+  }
 });
 
