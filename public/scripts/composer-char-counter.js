@@ -9,6 +9,5 @@ $(document).ready(function() {
 			counter.removeClass('red-text');
 		}
 		counter.text(inputRemain);
-		console.log($(document.body));
 	});
 });
