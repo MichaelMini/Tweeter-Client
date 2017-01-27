@@ -18,7 +18,8 @@
 $(function () {
   $('[action="/tweets"]').on('submit', function (sendTw) {
     sendTw.preventDefault();
-    var $inputLength = $(this).find('textarea').val().length
+    var $textarea = $(this).find('textarea');
+    var $inputLength = $textarea.val().length;
     var text = $('[action="/tweets"]').serialize();
     if ($inputLength === 0) {
       alert('Please type in the box below the "Compose Tweet"');
@@ -35,6 +36,7 @@ $(function () {
     }).then(function () {
       printAllTw();
     });
+    $textarea.val('');
   });
   var printAllTw = function () {
     $.ajax({
@@ -78,8 +80,6 @@ $(function () {
                 .append($('<i>').addClass(`fa fa-flag`).attr(`aria-hidden`, `true`));
 
   }
-  // $('#tweets').append($el);
-  // renderTweets(tweetdata);
   printAllTw();
 
   var $newTweet = $('.new-tweet');
@@ -88,7 +88,3 @@ $(function () {
   });
 });
 
-
-
-// $('#tweets').find('article').clone().appendTo('section#tweets');
-// console.log("hello");
