@@ -1,0 +1,110 @@
+.container {
+  background-color: white;
+  margin: 0 auto;
+  @media screen and (min-width: $break-small) {
+    width: 450px;
+  }
+  padding: 3em 2em 6em;
+}
+
+.new-tweet,
+article {
+  border: 1px solid $border-color;
+  border-radius: 5px 5px 5px 5px;
+}
+
+.new-tweet {
+  background-color: $new-tweet-bg-color;
+  padding: 10px;
+
+  h2 {
+    margin: 0px;
+    border-bottom: 1px solid black;
+  }
+
+  form {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+
+  textarea {
+    width: 100%;
+    margin: 20px 0 6px;
+  }
+
+  .red-text {
+    color: red;
+  }
+}
+
+
+#tweets {
+  margin: 30px auto;
+
+  header,
+  footer {
+    padding: 10px;
+  }
+  section {
+    padding: 20px;
+  }
+
+  article {
+    margin-bottom: 30px;
+  }
+
+  header {
+    background-color: $header-bg-color;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    position: relative;
+  }
+
+  img {
+    border-radius: 5px;
+    max-width: 60px;
+    position: absolute;
+  }
+  .name {
+    margin-left: 70px;
+    margin-top: 10px;
+  }
+  .handle {
+    font-size: .8em;
+    color: $border-color;
+  }
+  footer {
+    font-size: .8em;
+    border-top: 1px solid $header-bg-color;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+}
+
+.tweet .icons {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  display: none;
+}
+
+.tweet.hover .icons {
+  display: initial;
+}
+
+
+
