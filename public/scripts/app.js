@@ -39,12 +39,10 @@ $(function () {
     $textarea.val('');
   });
   var printAllTw = function () {
-    console.log("alpha:");
     $.ajax({
       url: '/tweets',
       method: 'GET'
     }).then(function(tweets) {
-      console.log("beta");
 
       tweets.forEach(function(eachTweet){
         createTweetElement(eachTweet);
@@ -59,7 +57,9 @@ $(function () {
     var name = data.user.name;
     var handle = data.user.handle;
     var content = data.content.text;
-    var createdAt = data.created_at + ' days ago';
+    var createdAt = new Date(data.created_at);
+
+    createdAt = timeSince(createdAt) + ' ago';
 
     var $tweet = $("<article>")
       .addClass("tweet")
@@ -83,7 +83,6 @@ $(function () {
     $iconsFooter.append($('<i>').addClass(`fa fa-heart`).attr(`aria-hidden`, `true`))
                 .append($('<i>').addClass(`fa fa-retweet`).attr(`aria-hidden`, `true`))
                 .append($('<i>').addClass(`fa fa-flag`).attr(`aria-hidden`, `true`));
-
   }
   printAllTw();
 
@@ -97,5 +96,55 @@ $(function () {
            function(){ $(this).toggleClass('hover') }
     )
   }
+
+  function timeSince(date) {
+      var seconds = Math.floor((new Date() - date) / 1000);
+      var interval = Math.floor(seconds / 31536000);
+      if (interval >= 1) {
+          return interval + " year" + ((interval>1)?'s':'');
+      }
+      interval = Math.floor(seconds / 2592000);
+      if (interval >= 1) {
+          return interval + " month" + ((interval>1)?'s':'');
+      }
+      interval = Math.floor(seconds / 86400);
+      if (interval >= 1) {
+          return interval + " day" + ((interval>1)?'s':'');
+      }
+      interval = Math.floor(seconds / 3600);
+      if (interval >= 1) {
+          return interval + " hour" + ((interval>1)?'s':'');
+      }
+      interval = Math.floor(seconds / 60);
+      if (interval >= 1) {
+          return interval + " minute" + ((interval>1)?'s':'');
+      }
+      return Math.floor(seconds) + " second" + ((seconds>1)?'s':'');
+  }
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
