@@ -8,9 +8,7 @@ const tweetsRoutes  = express.Router();
 module.exports = function(DataHelpers) {
 
   tweetsRoutes.get("/", function(req, res) {
-    console.log('running get /')
     DataHelpers.getTweets((err, tweets) => {
-      console.log('running callback')
       if (err) {
         res.status(500).json({ error: err.message });
       } else {
