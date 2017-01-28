@@ -18,9 +18,9 @@
 $(function () {
   $('[action="/tweets"]').on('submit', function (sendTw) {
     sendTw.preventDefault();
-    var $textarea = $(this).find('textarea');
-    var $inputLength = $textarea.val().length;
-    var text = $('[action="/tweets"]').serialize();
+    let $textarea = $(this).find('textarea');
+    let $inputLength = $textarea.val().length;
+    let text = $('[action="/tweets"]').serialize();
     if ($inputLength === 0) {
       alert('Please type in the box below the "Compose Tweet"');
       return
@@ -38,7 +38,7 @@ $(function () {
     });
     $textarea.val('');
   });
-  var printAllTw = function () {
+  let printAllTw = function () {
     $.ajax({
       url: '/tweets',
       method: 'GET'
@@ -52,16 +52,16 @@ $(function () {
     });
   }
 
-  var createTweetElement = function(data) {
-    var avatarSmall = data.user.avatars.small;
-    var name = data.user.name;
-    var handle = data.user.handle;
-    var content = data.content.text;
-    var createdAt = new Date(data.created_at);
+  let createTweetElement = function(data) {
+    let avatarSmall = data.user.avatars.small;
+    let name = data.user.name;
+    let handle = data.user.handle;
+    let content = data.content.text;
+    let createdAt = new Date(data.created_at);
 
     createdAt = timeSince(createdAt) + ' ago';
 
-    var $tweet = $("<article>")
+    let $tweet = $("<article>")
       .addClass("tweet")
       .append($(`<header>`).addClass(`tw-header`))
       .append($(`<section>`).addClass(`tw-sec`))
@@ -86,40 +86,40 @@ $(function () {
   }
   printAllTw();
 
-  var $newTweet = $('.new-tweet');
+  let $newTweet = $('.new-tweet');
   $('#compose').on('click', function toggleNewTweet() {
     $newTweet.slideToggle('slow').find('textarea').focus();
   });
 
-  var toggleHover = function() {
+  let toggleHover = function() {
     $('#tweets .tweet').hover(
            function(){ $(this).toggleClass('hover') }
     )
   }
 
   function timeSince(date) {
-      var seconds = Math.floor((new Date() - date) / 1000);
-      var interval = Math.floor(seconds / 31536000);
-      if (interval >= 1) {
-          return interval + " year" + ((interval>1)?'s':'');
-      }
-      interval = Math.floor(seconds / 2592000);
-      if (interval >= 1) {
-          return interval + " month" + ((interval>1)?'s':'');
-      }
-      interval = Math.floor(seconds / 86400);
-      if (interval >= 1) {
-          return interval + " day" + ((interval>1)?'s':'');
-      }
-      interval = Math.floor(seconds / 3600);
-      if (interval >= 1) {
-          return interval + " hour" + ((interval>1)?'s':'');
-      }
-      interval = Math.floor(seconds / 60);
-      if (interval >= 1) {
-          return interval + " minute" + ((interval>1)?'s':'');
-      }
-      return Math.floor(seconds) + " second" + ((seconds>1)?'s':'');
+    let seconds = Math.floor((new Date() - date) / 1000);
+    let interval = Math.floor(seconds / 31536000);
+    if (interval >= 1) {
+        return interval + " year" + ((interval>1)?'s':'');
+    }
+    interval = Math.floor(seconds / 2592000);
+    if (interval >= 1) {
+        return interval + " month" + ((interval>1)?'s':'');
+    }
+    interval = Math.floor(seconds / 86400);
+    if (interval >= 1) {
+        return interval + " day" + ((interval>1)?'s':'');
+    }
+    interval = Math.floor(seconds / 3600);
+    if (interval >= 1) {
+        return interval + " hour" + ((interval>1)?'s':'');
+    }
+    interval = Math.floor(seconds / 60);
+    if (interval >= 1) {
+        return interval + " minute" + ((interval>1)?'s':'');
+    }
+    return Math.floor(seconds) + " second" + ((seconds>1)?'s':'');
   }
 
 });
