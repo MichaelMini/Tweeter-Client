@@ -4,13 +4,14 @@
 require('dotenv').config();
 
 // const PORT          = 8080;
-app.set('port', (process.env.PORT || 8080));
 
 
 
 const express       = require("express");
 const bodyParser    = require("body-parser");
 const app           = express();
+
+app.set('port', (process.env.port || 8080));
 
 const MongoClient = require('mongodb').MongoClient;
 
