@@ -1,6 +1,6 @@
 "use strict";
 
-console.log("port: ", process.env.port);
+console.log("port: ", process.env.PORT);
 
 // Basic express setup:
 require('dotenv').config();
@@ -8,13 +8,13 @@ require('dotenv').config();
 
 // const PORT          = 8080;
 
-console.log("port: ", process.env.port);
+console.log("port: ", process.env.PORT);
 
 const express       = require("express");
 const bodyParser    = require("body-parser");
 const app           = express();
 
-app.set('port', (process.env.port || 8080));
+app.set('port', (process.env.PORT || 8080));
 
 const MongoClient = require('mongodb').MongoClient;
 
