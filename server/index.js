@@ -1,11 +1,14 @@
 "use strict";
 
+console.log("port: ", process.env.port);
+
 // Basic express setup:
 require('dotenv').config();
 
+
 // const PORT          = 8080;
 
-
+console.log("port: ", process.env.port);
 
 const express       = require("express");
 const bodyParser    = require("body-parser");
