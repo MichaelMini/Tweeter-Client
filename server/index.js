@@ -2,7 +2,12 @@
 
 // Basic express setup:
 require('dotenv').config();
-const PORT          = 8080;
+
+// const PORT          = 8080;
+app.set('port', (process.env.PORT || 8080));
+
+
+
 const express       = require("express");
 const bodyParser    = require("body-parser");
 const app           = express();
@@ -41,8 +46,8 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
   // Mount the tweets routes at the "/tweets" path prefix:
   app.use("/tweets", tweetsRoutes);
 
-  app.listen(PORT, () => {
-    console.log("Example app listening on port " + PORT);
+  app.listen(app.get('port'), () => {
+    console.log("Michael's Tweetr listening on port " + app.get('port'));
   });
 
   app.post('/tweet', function(req, res){
